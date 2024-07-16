@@ -10,7 +10,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
  * @notice Factory contract to create new prediction markets.
  * @dev This contract allows the owner to create new prediction markets with specified parameters.
  */
-contract PredictionMarketFactory is Ownable {
+contract PredictionMarketFactoryV2 is Ownable {
     address public tokenAddress; // Address of the ERC20 token used in prediction markets
     address public oracleAddress; // Address of the Oracle in prediction markets
 
