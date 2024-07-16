@@ -10,7 +10,6 @@ const tokenRoutes = require("./src/api/routes/token.route");
 const subgraphRoutes = require("./src/api/routes/subgraph.route");
 const marketRoutes = require("./src/api/routes/market.route");
 const eventRoutes = require("./src/api/routes/event.route");
-const cors = require('cors');
 
 // app.use(express.static(path.join(__dirname, 'public')));
 
