@@ -16,11 +16,20 @@ const eventRoutes = require("./src/api/routes/event.route");
 // req input phraser
 app.use(express.json());
 
+const allowedOrigins = ['http://localhost:3001', 'http://localhost:3000','https://trust-bid.vercel.app'];
+
 const corsOptions = {
-    origin: '*',
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept, Authorization',
 };
+
 app.use(cors(corsOptions));
 
 
