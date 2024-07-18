@@ -6,7 +6,7 @@ async function main() {
   console.log("Signer ", signer.address);
 
   const tokenAddress = "0xab4f68A873eC164D9d52467D92469fC313Cf64F6";
-  const oracleAddress = "0xeA65F246C606fc7C62f7B35724E85c788A04B13f";
+  const oracleAddress = "0xF6C4F35d0FA34AAaBFCafc99b8610b32cCe33CcD";
 
   const PredictionMarketFactory = await ethers.deployContract("PredictionMarketFactoryV3", [tokenAddress,oracleAddress,signer.address]);
 

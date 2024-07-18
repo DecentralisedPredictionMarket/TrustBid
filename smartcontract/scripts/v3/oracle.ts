@@ -5,7 +5,7 @@ async function main() {
   
   console.log("Signer ", signer.address);
 
-  const Oracle = await ethers.deployContract("OracleV3",);
+  const Oracle = await ethers.deployContract("Oracle",);
 
   await Oracle.waitForDeployment();
 
