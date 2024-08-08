@@ -31,6 +31,10 @@ const eventAllInteractionsController = async (req,res) => {
     try {
         const market = req.query.market;
 
+        if(!market){
+            throw new Error("Invalid market address");
+        }
+
         const result = await eventAllInteractionsService(market);
 
         console.log("result events ",result)

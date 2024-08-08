@@ -31,7 +31,7 @@ const eventAllInteractionsService = async (market) => {
     try {
        
         const result = await fetchLatestInteractions(market, marketAbi);
-        console.log("result ",result)
+        console.log("result ",result);
 
         if(result.error){
             return {
