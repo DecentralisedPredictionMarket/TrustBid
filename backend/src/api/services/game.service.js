@@ -1,3 +1,4 @@
+const { fetchMatches } = require("../utils/matchScheduleFetcher");
 const teams = require("../utils/teams.json");
 
 const fetchTeamsService = async () => {
@@ -22,4 +23,26 @@ const fetchTeamsService = async () => {
     }
 }
 
-module.exports = { fetchTeamsService };
+const fetchMatchesService = async (date) => {
+    try {
+        const result = await fetchMatches(date);
+        if(result.error){
+            return {
+                message: result.msg,
+                error: true
+            }
+        }
+
+        return {
+            message: result.msg,
+            error: false
+        }
+    } catch(err) {
+        return {
+            message: err.message,
+            error: true
+        }
+    }
+}
+
+module.exports = { fetchTeamsService, fetchMatchesService }
