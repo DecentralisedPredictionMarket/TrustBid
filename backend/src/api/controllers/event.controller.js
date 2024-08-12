@@ -137,4 +137,4 @@ const eventConvertDateToUnixController = async (req,res) => {
     }
 }
 
-module.exports = { eventDecodeController, eventAllInteractionsController, eventAllUserInteractionsController, eventEncodeController, eventConvertDateToUnixController };
+module.exports = { eventDecodeController, eventAllInteractionsController, eventAllUserInteractionsController, eventEncodeController, eventConvertDateToUnixController }
