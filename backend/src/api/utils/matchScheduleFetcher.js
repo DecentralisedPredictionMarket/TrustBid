@@ -1,5 +1,6 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
+const teams = require("./teams.json");
 
 async function fetchMatches(date) {
     try {

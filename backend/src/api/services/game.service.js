@@ -44,5 +44,28 @@ const fetchMatchesService = async (date) => {
         }
     }
 }
+const fetchTeamInfoService = async (queryParam) => {
+    try {
+        const { teamSymbol, teamId } = queryParam;
 
-module.exports = { fetchTeamsService, fetchMatchesService }
+        const team = teams.find((team) => {
+            console.log(team,teamId,typeof teamId, teamSymbol, typeof teamSymbol, team.id == String(teamId), team.symbol == teamSymbol);
+            if(team.id == String(teamId) ||team.symbol == teamSymbol){
+                return team;
+            }
+        })
+
+        if (!team) {
+            throw new TypeError("Team not found");
+        }
+
+        return { error: false, message: team };
+    } catch(err) {
+        return {
+            message: err.message,
+            error: true
+        }
+    }
+}
+
+module.exports = { fetchTeamsService, fetchMatchesService, fetchTeamInfoService }

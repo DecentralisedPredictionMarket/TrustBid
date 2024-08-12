@@ -56,7 +56,7 @@ const AdminPage: React.FC<UserDetailsProps> = ({ user }) => {
     }
   },[]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e:any) => {
     e.preventDefault();
     console.log("Team 1:", team1);
     console.log("Team 2:", team2);
@@ -92,11 +92,11 @@ const AdminPage: React.FC<UserDetailsProps> = ({ user }) => {
           onChange={(e) => setTeam1(e.target.value)}
         >
           <option value="">--Select Team 1--</option>
-          {teams.map((team, index) => (
-            <option key={index} value={team}>
-              {team}
+          {teams ? teams.map((team, index) => (
+            <option key={index} value={team.id}>
+              {team.title}
             </option>
-          ))}
+          )) : <option>No teams</option>}
         </select>
       </div>
       <div>
@@ -107,11 +107,11 @@ const AdminPage: React.FC<UserDetailsProps> = ({ user }) => {
           onChange={(e) => setTeam2(e.target.value)}
         >
           <option value="">--Select Team 2--</option>
-          {teams.map((team, index) => (
-            <option key={index} value={team}>
-              {team}
+          {teams ? teams.map((team, index) => (
+            <option key={index} value={team.id}>
+              {team.title}
             </option>
-          ))}
+          )) : <option>No teams</option>}
         </select>
       </div>
       <div>
