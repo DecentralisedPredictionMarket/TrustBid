@@ -5,7 +5,7 @@ const { getUnsignedTxn, getUnsignedNoParamsTxn, getReadFunction, getReadFunction
 
 const betService = async (market, amount, option, from) => {
     try {
-        const amountWithDecimals = amount * 1e18;
+        const amountWithDecimals = String(amount * 1e18);
         const params = [amountWithDecimals, option];
         const result = await getUnsignedTxn(market,marketAbi,"placeBet",params,from);
         console.log("txn ",result)
@@ -217,4 +217,28 @@ const getAdminService = async () => {
     }
 }
 
-module.exports = { betService, claimService, userBetInfoService, totalBetsInfoService, marketInfoService, resolveMarketService, withdrawBetService, getAdminService }
+const getMarketIsCanceledService = async (market) => {
+    try {
+        const result = await getReadFunctionNoParams(market,marketAbi,"marketCanceled");
+        console.log("market is canceled function call ",result)
+
+        if(result.error){
+            return {
+                message: result.msg,
+                error: true
+            }
+        }
+
+        return {
+            message: result.msg,
+            error: false
+        }
+    } catch(err) {
+        return {
+            message: err.message,
+            error: true
+        }
+    }
+}
+
+module.exports = { betService, claimService, userBetInfoService, totalBetsInfoService, marketInfoService, resolveMarketService, withdrawBetService, getAdminService, getMarketIsCanceledService }
