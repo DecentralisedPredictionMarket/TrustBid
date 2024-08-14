@@ -5,21 +5,7 @@ function getAbiCoderInstance() {
     return defaultAbiCoderInstance;
 }
 
-
-function encode(title, options,otherTeamInfos) {
-    try {
-        // Create a new prediction market with hashed event data
-        const encodedData = getAbiCoderInstance().encode(
-            ["string", "string[]","tuple(string id, string symbol, string title, string logo)[]"],
-            [title, options,otherTeamInfos]
-        );
-
-        console.log("encoded", encodedData)
-
-        return { msg: encodedData, error: false };
-    } catch(err) {
-        return { msg: err.message, error: true };
-    }
+ 
     
 function encode(title, options,otherTeamInfos) {
     try {

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import React, { useEffect, useState } from 'react';
 import './MarketCard.css';
 import { Card, CardActionArea, CardContent, Typography, Box } from '@mui/material';
 import axios from 'axios';
