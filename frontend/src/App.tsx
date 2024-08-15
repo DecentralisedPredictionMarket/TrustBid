@@ -38,7 +38,7 @@ function App() {
             path="/market/:i/:id"
             element={<MarketInfoComponentWrapper markets={markets} account={connectedAccount} />}
           />
-          <Route path='/dashboard' element={<Dashboard user={connectedAccount}/>} />
+          <Route path='/dashboard' element={<Dashboard user={connectedAccount} markets={markets}/>} />
           <Route path='/admin' element={<AdminPage user={connectedAccount}/>} />
         </Routes>
         </Router>

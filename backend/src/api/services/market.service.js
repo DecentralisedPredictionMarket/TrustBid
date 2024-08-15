@@ -122,7 +122,7 @@ const totalBetsInfoService = async (market) => {
 const marketInfoService = async (market) => {
     try {
         const marketInfo = {};
-        const values = ["marketResolved","winningOption","liquidityPool","numberOfOptions","eventHash","startTime","expirationTime"];
+        const values = ["marketResolved","winningOption","liquidityPool","numberOfOptions","eventHash","endTime"];
         for(let i = 0; i < values.length; i++){
             const result = await getReadFunctionNoParams(market, marketAbi, values[i]);
             if(result.error){
@@ -241,4 +241,51 @@ const getMarketIsCanceledService = async (market) => {
     }
 }
 
-module.exports = { betService, claimService, userBetInfoService, totalBetsInfoService, marketInfoService, resolveMarketService, withdrawBetService, getAdminService, getMarketIsCanceledService }
+const cancelService = async (user, market) => {
+    try {
+        const result = await getUnsignedNoParamsTxn(market,marketAbi,"cancelMarket",user);
+
+        if(result.error){
+            return {
+                message: result.msg,
+                error: true
+            }
+        }
+
+        return {
+            message: result.msg,
+            error: false
+        }
+    } catch(err) {
+        return {
+            message: err.message,
+            error: true
+        }
+    }
+}
+
+const createMarketService = async (user,hash,noOfOptions,expireTime) => {
+    try {
+        const params = [noOfOptions,hash,expireTime];
+        const data = config()
+        const result = await getUnsignedTxn(data.factory,marketFactoryAbi,"createPredictionMarket",params, user)
+        if(result.error){
+            return {
+                message: result.msg,
+                error: true
+            }
+        }
+
+        return {
+            message: result.msg,
+            error: false
+        }
+    } catch(err) {
+        return {
+            message: err.message,
+            error: true
+        }
+    } 
+}
+ 
+module.exports = { betService, claimService, userBetInfoService, totalBetsInfoService, marketInfoService, resolveMarketService, withdrawBetService, getAdminService, getMarketIsCanceledService, cancelService, createMarketService }
