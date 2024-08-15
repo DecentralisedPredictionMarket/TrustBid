@@ -304,7 +304,7 @@ const AdminPage: React.FC<UserDetailsProps> = ({ user }) => {
                 <TableHead>
                   <TableRow>
                     <TableCell>Event Title</TableCell>
-                    <TableCell>Owner</TableCell>
+                    <TableCell>Market</TableCell>
                     <TableCell>Expiration Time</TableCell>
                     <TableCell>Status</TableCell>
                     <TableCell>Teams</TableCell>
@@ -315,7 +315,7 @@ const AdminPage: React.FC<UserDetailsProps> = ({ user }) => {
                     events.map((event, index) => (
                       <TableRow key={index}>
                         <TableCell>{event.eventTitle}</TableCell>
-                        <TableCell>{event.owner}</TableCell>
+                        <TableCell>{event.marketAddress}</TableCell>
                         <TableCell>{dayjs.unix(parseInt(event.expirationTime)).format('YYYY-MM-DD HH:mm')}</TableCell>
                         <TableCell>{dayjs().isBefore(dayjs.unix(parseInt(event.expirationTime))) ? 'Active' : 'Expired'}</TableCell>
                         <TableCell className="table-cell-teams">
